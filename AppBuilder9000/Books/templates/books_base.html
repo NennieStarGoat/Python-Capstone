@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://unpkg.com/wingcss"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<title>{% block title%}Gutenberg.org's Book Database Search and Save{% endblock %}</title>
+	</head>
+	<header>
+		<div class="JavaScriptDropdown">
+			<div class="nav">
+				<button type="button">Gutensearch</button>
+				<div class="nav-item"><!-- Add in links based on your registered URLs -->
+					<a href="{% url 'home' %}" class="nav-item">Home</a>
+					<a href="{% url 'search' %}" class="nav-item">Genre Search</a>
+					<a href="{% url 'create' %}" class="nav-item">Bookshelf</a>
+					<a href="{% url 'book' %}" class="nav-item">Add a Book</a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<body id="text-center">
+		<div class="text-center">
+			{% block content %}{% endblock %}
+			<br><br>
+		</div>
+		<section id="footer">
+			<p id="footer"><a href="#">Terms</a>|<a href="#">Privacy</a></p>
+		</section>
+	</body>
+</html>

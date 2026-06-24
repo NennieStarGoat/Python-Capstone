@@ -1,0 +1,48 @@
+{% extends "books_base.html" %}
+{% load static %}
+
+{% block title %}Top Ten Books{% endblock %}
+{% block content %}
+    <h3>
+        <div class="body">Welcome to a Fan-Made Gutenberg.org Search</div>
+    </h3>
+    <hr>
+    <div class="s130">
+        <h5>Find the Top Ten most popular books of a given genre by searching below.</h5>
+        <img src="{% static 'images/home-page-images/genres.png' %}" alt="Genres of Books">
+        <form method="GET" action="{% url 'search' %}">
+            <div class="form">
+                <div class="svg-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                    </svg>
+                </div>
+                <input id="search" name="q" type="text" value="{{ query }}" placeholder="What genre would you like to see results for?" required>
+                <button class="btn-search" type="submit">SEARCH</button>
+            </div>
+        </form>
+    </div>
+    <div class="search-results-container" style="margin-top: 30px;">
+        {% if query %}
+            <h4>Top 10 Books for "{{ query }}"</h4>
+
+            {% if books is None %}
+                <p style="color: red;">Could not connect to the book database. Please try again later.</p>
+            {% elif books %}
+                <ol class="books-list">
+                    {% for book in books %}
+                        <li style="margin-bottom: 10px;">
+                            <a href="{% url 'book_detail' book_id=book.id %}" style="text-decoration: none; color: #007bff; font-weight: bold;">
+                                {{ book.title }}
+                            </a>
+                            by {{ book.authors }}
+                            <span style="color: #666; font-size: 0.9em;">({{ book.downloads }} downloads)</span>
+                        </li>
+                    {% endfor %}
+                </ol>
+            {% else %}
+                <p>No books found for this genre. Try another topic!</p>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}

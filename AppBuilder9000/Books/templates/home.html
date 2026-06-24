@@ -1,0 +1,29 @@
+{% extends "books_base.html" %}
+{% load static %}
+
+{% block title %}Top Ten Books{% endblock %}
+{% block content %}
+    <h3>
+        <div class="body">Welcome to a Fan-Made Project Gutenberg Search Site</div>
+    </h3>
+    <hr>
+    <div class="s130">
+        <h5>Here you can search for the top ten books of a particular genre, the top ten authors, or add books that exist in the Project Gutenberg directory to a personal 'bookshelf'.</h5>
+        <img src="{% static 'images/home-page-images/pg-logo-new.jpg' %}" alt="Project Gutenberg Logo">
+    </div>
+    <div class="text-center">
+        <h5>Manage your existing bookshelves!</h5>
+        <form method="POST">
+            <label id="index-label">Choose Bookshelf:</label>
+            {% csrf_token %}
+            {{ form.bookshelf }}
+            <button type="submit">Go to Bookshelf</button>
+        </form>
+    </div>
+    <hr>
+    <div class="text-center">
+        <h5>Add another Bookshelf!</h5>
+        <!-- Add a template to the href so the button works-->
+        <button type="submit" ><a href="{% url 'create' %}" style="color: inherit; text-decoration: none;">Create Bookshelf</a></button>
+    </div>
+{% endblock %}

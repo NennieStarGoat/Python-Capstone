@@ -1,0 +1,67 @@
+{% extends "books_base.html" %}
+{% load static %}
+
+{% block title %}{% if book %}{{ book.title }}{% else %}Book Details{% endif %}{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 30px; max-width: 800px;">
+    <a href="javascript:history.back()" style="display: inline-block; margin-bottom: 20px; color: #666;">&larr; Back to Results</a>
+
+    {% if book %}
+        <h2>{{ book.title }}</h2>
+        <p><strong>Author(s):</strong>
+            {% for author in book.authors %}
+                {{ author.name }}{% if not forloop.last %}, {% endif %}
+            {% empty %}
+                Unknown Author
+            {% endfor %}
+        </p>
+        <p><strong>Total Downloads:</strong> {{ book.download_count }}</p>
+
+        <hr>
+
+        <h3>Book Summary & Context</h3>
+        {% if summaries %}
+            <div class="text-summary-box" style="line-height: 1.6; font-size: 1.1em; color: #222; margin-bottom: 15px;">
+                {% for summary in summaries %}
+                    <p> {{ summary }}</p>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p style="color: #555; font-style: italic;">
+                An abstractive text synopsis is unavailable for this specific volume. However, the record is thoroughly indexed under the following thematic criteria:
+            </p>
+        {% endif %}
+
+        <h5>Bookshelves:</h5>
+        <ul>
+            {% for shelf in book.bookshelves %}
+                <li>{{ shelf }}</li>
+            {% empty %}
+                <li>No specific curated shelves assigned.</li>
+            {% endfor %}
+        </ul>
+
+        <hr>
+
+        <h3>Read Online / Download</h3>
+        <ul>
+            {% if formats.html %}
+                <li><a href="{{ formats.html }}" target="_blank">Read HTML Web Version</a></li>
+            {% endif %}
+            {% if formats.epub %}
+                <li><a href="{{ formats.epub }}">Download EPUB (E-Reader)</a></li>
+            {% endif %}
+            {% if formats.text %}
+                <li><a href="{{ formats.text }}" target="_blank">View Plain Text Document</a></li>
+            {% endif %}
+        </ul>
+
+    {% else %}
+        <div class="error-box" style="color: red; border: 1px solid red; padding: 15px;">
+            <h4>Error Loading Metadata</h4>
+            <p>Could not load details for this title from the remote archive. Please try again later.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
