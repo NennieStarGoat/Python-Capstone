@@ -1,0 +1,19 @@
+Code Summary Story 1
+
+For my first story I began by creating a base html page and linked a stylesheet css that I found for free online that I liked. I then used the stylesheet to create navigation bar items as well as center my base text. Then I created my home landing page, where users can search by genre of book for the top ten books of that category. I found some other css styling that I liked for the search bar and added that into the html. I ensured I had a footer, title, a nav bar even though not all of the links work yet, text and a background (though it is white). Finally, I added an image of different book genres above the search bar.
+
+Code Summary Story 2
+
+For my second story I spent quite a bit of time creating forms and pages so that users could create bookshelves and add individual books to those shelves, along with the option to make the shelves editable and able to be deleted. This required a lot of work and kept me blocked for quite some time. They can look at previous bookshelves, name them different things, and add and remove books, as well as completely delete the list.
+
+Code Summary Story 3 
+
+Added the search functionality to find and get the top ten books by download of a given topic on gutenberg.org's site. Once able to access the API this wasn't too difficult and can pull the top ten by topic.
+
+Code Summary Story 4
+
+Added the ability to click on the returned search list of books to view the details of that specific book, getting a summary, list of bookshelves that Gutenberg lists it under, and links to where the user can read the book in different formats.
+
+Code Summary Story 5
+
+Already had the ability to delete bookshelves, but added the ability to edit reading status of books on bookshelves, the ability to delete specific books from a bookshelf, and to rename the bookshelf.
